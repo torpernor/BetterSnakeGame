@@ -1,4 +1,4 @@
-import curses, time, random
+import curses, time, random, os
 
 
 def update_game(win: curses.window, game_dict):
@@ -91,11 +91,11 @@ def display_game(win: curses.window, game_dict):
 
     # draw game board
     win.move(0, 0)
-    win.addstr(" " + "-" * max_size[0] * 2 + " \n")
+    win.addstr(" " + "-" * max_size[0] * 2 + " " + os.linesep)
     for _ in range(max_size[1]):
-        win.addstr("|" + " " * max_size[0] * 2 + "|\n")
-    win.addstr(" " + "-" * max_size[0] * 2 + " \n")
-    win.addstr(f"Key pressed: {key}\n")
+        win.addstr("|" + " " * max_size[0] * 2 + "|" + os.linesep)
+    win.addstr(" " + "-" * max_size[0] * 2 + " " + os.linesep)
+    win.addstr(f"Key pressed: {key}" + os.linesep)
     final_y, final_x = win.getyx()
 
     def print_at_game_loc(loc, obj):
@@ -113,7 +113,7 @@ def main():
     # helper code for reading key input
     setup_terminal(win)
 
-    max_size = [30, 10]
+    max_size = [30, 5]
     game_dict = {
         "loc_list": [[5, 5]],
         "max_size": max_size,
